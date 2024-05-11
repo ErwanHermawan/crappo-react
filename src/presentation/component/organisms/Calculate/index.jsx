@@ -44,9 +44,7 @@ const Calculate = (props) => {
 							<FormControl variant="select" name="date" list={optionData} />
 						</div>
 						<div className={style.row}>
-							<Button type="button" variant="accent">
-								Calculate
-							</Button>
+							<Button type="button" text="Calculate" />
 						</div>
 					</div>
 					<div className={style.result}>

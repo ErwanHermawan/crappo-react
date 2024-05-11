@@ -1,13 +1,11 @@
 // -- style
 import style from "./style.module.scss";
 
-// -- atom
-
 const NumbersItem = (props) => {
 	return (
 		<div className={style.item}>
 			<div className={style.icon}>
-				{/* <SystemIcon name={props.icon_font} /> */}
+				<i className={`ci-${props.icon_font}`}></i>
 			</div>
 			<div className={style.text}>
 				<h4 className={style.title}>{props.title}</h4>

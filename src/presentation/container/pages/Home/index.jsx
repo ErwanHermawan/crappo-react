@@ -3,21 +3,19 @@ import Default from "presentation/component/templates/Default";
 
 // -- widgets
 import HeroBannerWidget from "infrastucture/widgets/HeroBannerWidget";
+import NumbersWidget from "infrastucture/widgets/NumbersWidget";
+import WhyCrappoWidget from "infrastucture/widgets/WhyCrappoWidget";
+import CryptocurrenciesWidget from "infrastucture/widgets/CryptocurrenciesWidget";
+import InvestSmartWidget from "infrastucture/widgets/InvestSmartWidget";
+import StatisticsWidget from "infrastucture/widgets/StatisticsWidget";
+import ProfitInvestmentWidget from "infrastucture/widgets/ProfitInvestmentWidget";
 
 // -- components
-import Numbers from "presentation/component/organisms/Numbers";
-import WhyCrappo from "presentation/component/organisms/WhyCrappo";
 import Calculate from "presentation/component/organisms/Calculate";
-import Cryptocurrencies from "presentation/component/organisms/Cryptocurrencies";
-import Market from "presentation/component/organisms/Market";
 import StartMining from "presentation/component/organisms/StartMining";
 
 // -- datas
-import numbersData from "./numbersData";
-import whyCrappoData from "../whyCrappoData";
 import calculateData from "./calculateData";
-import cryptoData from "./cryptoData";
-import marketData from "./marketData";
 import startMiningData from "./startMiningData";
 
 const Home = (props) => {
@@ -25,11 +23,13 @@ const Home = (props) => {
 		<>
 			<Default activeMenu="home">
 				<HeroBannerWidget />
-				<Numbers {...numbersData} />
-				<WhyCrappo {...whyCrappoData} />
+				<NumbersWidget />
+				<WhyCrappoWidget />
 				<Calculate {...calculateData} />
-				<Cryptocurrencies {...cryptoData} />
-				<Market {...marketData} />
+				<CryptocurrenciesWidget />
+				<InvestSmartWidget />
+				<StatisticsWidget />
+				<ProfitInvestmentWidget />
 				<StartMining {...startMiningData} />
 			</Default>
 		</>

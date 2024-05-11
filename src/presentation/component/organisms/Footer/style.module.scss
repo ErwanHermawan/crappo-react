@@ -288,48 +288,12 @@
 		transition: all 0.3s ease;
 		@include font-size(h3m);
 		color: color(white);
-		i {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			z-index: zi(footer-sosmed-icon);
-			transform: translate(-50%, -50%);
-		}
-		&:global(.facebook) {
-			&:hover {
-				background-color: color(social-media, facebook);
-				color: color(white);
-			}
-		}
-		&:global(.instagram) {
-			&:hover {
-				background-color: color(social-media, instagram);
-				color: color(white);
-			}
-		}
-		&:global(.youtube) {
-			&:hover {
-				background-color: color(social-media, youtube);
-				color: color(white);
-			}
-		}
-		&:global(.twitter) {
-			&:hover {
-				background-color: color(social-media, twitter);
-				color: color(white);
-			}
-		}
-		&:global(.linkedin) {
-			&:hover {
-				background-color: color(social-media, linkedin);
-				color: color(white);
-			}
-		}
-		&:global(.telegram) {
-			&:hover {
-				background-color: color(social-media, telegram);
-				color: color(white);
-			}
-		}
+	}
+	&Icon {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: zi(footer-sosmed-icon);
+		transform: translate(-50%, -50%);
 	}
 }

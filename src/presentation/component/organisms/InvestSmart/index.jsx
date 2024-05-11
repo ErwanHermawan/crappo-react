@@ -4,38 +4,40 @@ import style from "./style.module.scss";
 // -- atoms
 import Button from "presentation/component/atoms/Button";
 
-const Market = (props) => {
+const InvestSmart = (props) => {
+	const {
+		data: { title, section },
+	} = props;
+
 	return (
-		<div className={style.market}>
+		<div className={style.invest}>
 			<div className="container">
 				<div className={style.head}>
-					<h2 className={style.title}>{props.title}</h2>
+					<h2 className={style.title}>{title}</h2>
 				</div>
 				<div className={style.body}>
 					<div className={style.img}>
 						<img
 							className={style.imgMain}
-							src={props.img.main}
-							alt={props.text.title}
+							src={section?.images[0]}
+							alt={section?.title}
 						/>
 						<img
 							className={style.imgInc}
-							src={props.img.inc}
-							alt={props.text.title}
+							src={section?.images[1]}
+							alt={section?.title}
 						/>
 						<img
 							className={style.imgPrice}
-							src={props.img.price}
-							alt={props.text.title}
+							src={section?.images[2]}
+							alt={section?.title}
 						/>
 					</div>
 					<div className={style.text}>
 						<div className={style.wrapper}>
-							<h2 className={style.textTitle}>{props.text.title}</h2>
-							<p className={style.textDesc}>{props.text.desc}</p>
-							<Button variant="accent" to={props.btn.to}>
-								{props.btn.text}
-							</Button>
+							<h2 className={style.textTitle}>{section?.title}</h2>
+							<p className={style.textDesc}>{section?.description}</p>
+							<Button to={section?.button.to} text={section?.button.text} />
 						</div>
 					</div>
 				</div>
@@ -44,4 +46,4 @@ const Market = (props) => {
 	);
 };
 
-export default Market;
+export default InvestSmart;

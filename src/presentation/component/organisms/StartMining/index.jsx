@@ -31,9 +31,7 @@ const StartMining = (props) => {
 							/>
 						</div>
 						<div className={style.row}>
-							<Button type="submit" variant="white">
-								Subscribe
-							</Button>
+							<Button type="submit" text="Subscribe" variant="white" />
 						</div>
 					</form>
 				</div>

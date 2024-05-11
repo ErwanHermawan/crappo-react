@@ -25,6 +25,7 @@
 		z-index: zi(features-icon);
 		transform: translate(-50%, -50%);
 		@include font-size(h2);
+		color: color(accent);
 		@include large {
 			@include font-size(h3);
 		}

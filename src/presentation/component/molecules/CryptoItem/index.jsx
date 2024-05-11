@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 // -- style
 import style from "./style.module.scss";
 
@@ -9,17 +7,19 @@ import Button from "presentation/component/atoms/Button";
 const CryptoItem = (props) => {
 	return (
 		<div className={style.box}>
-			<Link className={style.link} to={props.to}></Link>
-			<div className={style.img}>
-				<img src={props.img} alt={props.title} />
+			<div className={style.image}>
+				<img src={props.icon} alt={props.name} />
 			</div>
 			<div className={style.text}>
-				<h3 className={style.title}>{props.title}</h3>
-				<p className={style.desc}>{props.desc}</p>
+				<h3 className={style.title}>{props.name}</h3>
+				<p className={style.desc}>{props.description}</p>
 				<div className={style.btn}>
-					<Button category="rounded" icon="chevron-right">
-						Start mining
-					</Button>
+					<Button
+						to={props.button.to}
+						text={props.button.text}
+						variant="rounded"
+						icon="chevron-right"
+					/>
 				</div>
 			</div>
 		</div>

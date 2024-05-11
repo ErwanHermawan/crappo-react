@@ -1,5 +1,10 @@
 // -- react
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// -- api
+import httpRequest from "infrastucture/api/httpRequest";
+import ENDPOINT from "infrastucture/api/endPoint";
 
 // -- dummy data
 import footerData from "./footerData";
@@ -8,23 +13,49 @@ import footerData from "./footerData";
 import style from "./style.module.scss";
 
 const Footer = () => {
+	// state
+	const [data, setData] = useState({
+		brand: [],
+		menu: [],
+		payments: {
+			list: [],
+		},
+		social_media: [],
+		copyright: "",
+	});
+
+	// call API
+	const { data: getData } = httpRequest({
+		url: ENDPOINT.FOOTER,
+		method: "get",
+	});
+
+	// use effect
+	useEffect(() => {
+		if (getData?.data) {
+			setData(getData?.data);
+		}
+	}, [getData]);
+
+	const { brand, menu, payments, social_media, copyright } = data;
+
 	return (
 		<footer className={style.footer}>
 			<div className="container">
 				<div className={style.top}>
 					{/* Logo */}
 					<div className={style.logo}>
-						<Link to={footerData.logo.to} className={style.logoLink}>
+						<Link to={brand.to} className={style.logoLink}>
 							<img
-								src={footerData.logo.img}
-								alt={footerData.logo.alt}
+								src={brand.logo}
+								alt={brand.name}
 								className={style.logoImg}
 							/>
 						</Link>
 					</div>
 					{/* Menu */}
 					<div className={style.menu}>
-						{footerData.menu.map((val, idx) => (
+						{menu.map((val, idx) => (
 							<div className={`${style.column}`} key={`fc-${idx}`}>
 								<h3 className={style.title}>{val.title}</h3>
 								<ul className={style.list}>
@@ -41,9 +72,9 @@ const Footer = () => {
 							</div>
 						))}
 						<div className={style.payment}>
-							<h2 className={style.paymentTitle}>{footerData.about.title}</h2>
+							<h2 className={style.paymentTitle}>{payments.title}</h2>
 							<ul className={style.paymentList}>
-								{footerData.about.payment.map((val, idx) => (
+								{payments.list.map((val, idx) => (
 									<li className={style.paymentItem} key={`fp-${idx}`}>
 										<a
 											href={val.to}
@@ -52,8 +83,8 @@ const Footer = () => {
 										>
 											<img
 												className={style.paymentImg}
-												src={val.img}
-												alt={val.alt}
+												src={val.icon}
+												alt={val.name}
 											/>
 										</a>
 									</li>
@@ -63,12 +94,17 @@ const Footer = () => {
 					</div>
 				</div>
 				<div className={style.bottom}>
-					<p className={style.copyright}>{footerData.copyright}</p>
+					<p className={style.copyright}>{copyright}</p>
 					<ul className={style.sosmed}>
-						{footerData.sosmed.map((val, idx) => (
+						{social_media.map((val, idx) => (
 							<li className={style.sosmedItem} key={`fs-${idx}`}>
-								<Link to={val.to} className={`${style.sosmedLink} ${val.icon}`}>
+								<Link to={val.to} className={`${style.sosmedLink} ${val.name}`}>
 									<i className={`ci-${val.icon}`}></i>
+									<img
+										className={style.paymentIcon}
+										src={val.icon}
+										alt={val.name}
+									/>
 								</Link>
 							</li>
 						))}

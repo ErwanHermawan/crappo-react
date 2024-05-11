@@ -19,13 +19,11 @@ const HeroBannerItem = (props) => {
 				<p className={style.desc}>{props.desc}</p>
 				<div className={style.btn}>
 					<Button
-						variant="accent"
-						category="icon"
 						to={props.btn.to}
+						text={props.btn.text}
+						variant="icon"
 						icon="chevron-right"
-					>
-						{props.btn.text}
-					</Button>
+					/>
 				</div>
 			</div>
 		</div>

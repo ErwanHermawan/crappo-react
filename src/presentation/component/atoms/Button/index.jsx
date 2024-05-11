@@ -8,11 +8,14 @@ const Button = (props) => {
 	const { to, text, type, icon, variant = "primary" } = props;
 
 	let variantStyle = style.btn;
-	if (variant === "arrow") {
-		variantStyle += " " + style.btnArrow;
+	if (variant === "rounded") {
+		variantStyle += " " + style.btnRounded;
 	}
-	if (variant === "outline") {
-		variantStyle += " " + style.btnOutline;
+	if (variant === "icon") {
+		variantStyle += " " + style.btnIcon;
+	}
+	if (variant === "white") {
+		variantStyle += " " + style.btnWhite;
 	}
 
 	return (
@@ -20,13 +23,13 @@ const Button = (props) => {
 			{to && (
 				<Link to={to} className={variantStyle}>
 					{text}
-					{icon && <i className={`fi-${icon}`}></i>}
+					{icon && <i className={`ci-${icon}`}></i>}
 				</Link>
 			)}
 			{!to && (
 				<button type={type} className={variantStyle}>
 					{text}
-					{icon && <i className={`fi-${icon}`}></i>}
+					{icon && <i className={`ci-${icon}`}></i>}
 				</button>
 			)}
 		</>

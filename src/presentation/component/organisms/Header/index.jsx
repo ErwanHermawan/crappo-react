@@ -2,9 +2,6 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// -- data
-import headerData from "./headerData";
-
 // -- api
 import httpRequest from "infrastucture/api/httpRequest";
 import ENDPOINT from "infrastucture/api/endPoint";
@@ -17,7 +14,11 @@ import Button from "presentation/component/atoms/Button";
 
 const Header = ({ activeMenu }) => {
 	// state
-	const [data, setData] = useState([]);
+	const [data, setData] = useState({
+		brand: [],
+		main_menu: [],
+		auth_menu: [],
+	});
 
 	// call API
 	const { data: getData } = httpRequest({
@@ -27,12 +28,12 @@ const Header = ({ activeMenu }) => {
 
 	// use effect
 	useEffect(() => {
-		if (getData?.data?.length) {
+		if (getData?.data) {
 			setData(getData?.data);
 		}
 	}, [getData]);
 
-	console.log(data);
+	const { brand, main_menu, auth_menu } = data;
 
 	// Sticky Menu Area
 	const ref = useRef(null);
@@ -88,10 +89,10 @@ const Header = ({ activeMenu }) => {
 				<div className={style.inner} ref={ref}>
 					{/* Logo */}
 					<div className={style.logo}>
-						<Link to={headerData.logo.to} className={style.logoLink}>
+						<Link to={brand?.to} className={style.logoLink}>
 							<img
-								src={headerData.logo.img}
-								alt={headerData.logo.alt}
+								src={brand?.logo}
+								alt={brand?.name}
 								className={style.logoImg}
 							/>
 						</Link>
@@ -100,7 +101,7 @@ const Header = ({ activeMenu }) => {
 					<div className={style.nav}>
 						<div className={style.menu}>
 							<ul className={style.list}>
-								{headerData.menu.map((val, idx) => (
+								{main_menu.map((val, idx) => (
 									<li className={style.item} key={`hm-${idx}`}>
 										<Link
 											to={val.to}
@@ -117,7 +118,7 @@ const Header = ({ activeMenu }) => {
 							</ul>
 						</div>
 						<div className={style.btn}>
-							{headerData.button.map((vB, iB) => (
+							{auth_menu.map((vB, iB) => (
 								<Button key={`hm-${iB}`} to={vB.to} text={vB.text} />
 							))}
 						</div>
