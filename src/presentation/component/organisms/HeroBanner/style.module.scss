@@ -1,5 +1,32 @@
 @import "core/styles/_assets.scss";
 
+@mixin height-banner {
+	height: calc(100vh - 150px);
+	min-height: 720px;
+	max-height: 960px;
+	width: 100%;
+	padding: 96px 0;
+	@include x-large {
+		min-height: 680px;
+		padding: 88px 0;
+	}
+	@include large {
+		height: calc(100vh - 118px);
+		max-height: 640px;
+		padding: 80px 0;
+	}
+	@include medium {
+		min-height: 400px;
+		padding: 72px 0;
+		height: calc(100vh - 72px);
+		max-height: 520px;
+	}
+	@include small {
+		padding: 64px 0;
+		height: calc(100vh - 64px);
+	}
+}
+
 .banner {
 	position: relative;
 	:global(.slick-dots) {
@@ -39,30 +66,7 @@
 	display: table !important;
 	position: relative;
 	overflow: hidden;
-	width: 100%;
-	height: calc(100vh - 150px);
-	min-height: 720px;
-	max-height: 960px;
-	padding: 96px 0;
-	@include x-large {
-		min-height: 680px;
-		padding: 88px 0;
-	}
-	@include large {
-		height: calc(100vh - 118px);
-		max-height: 640px;
-		padding: 80px 0;
-	}
-	@include medium {
-		min-height: 400px;
-		padding: 72px 0;
-		height: calc(100vh - 72px);
-		max-height: 520px;
-	}
-	@include small {
-		padding: 64px 0;
-		height: calc(100vh - 64px);
-	}
+	@include height-banner();
 	&::before {
 		content: "";
 		position: absolute;
@@ -90,4 +94,101 @@
 	vertical-align: middle;
 	width: 100%;
 	height: 100%;
+}
+
+/* placeholder */
+@mixin skeleton {
+	background-color: #e2e5e7;
+	opacity: 0.3;
+	background-image: linear-gradient(
+		90deg,
+		rgba(#fff, 0),
+		rgba(#fff, 0.5),
+		rgba(#fff, 0)
+	);
+	background-size: 40px 100%;
+	background-repeat: no-repeat;
+	background-position: left -40px top 0;
+	animation: shine 1s ease infinite;
+
+	@keyframes shine {
+		to {
+			background-position: right -40px top 0;
+		}
+	}
+}
+.placeholder {
+	@include height-banner();
+	.inner {
+		display: flex;
+		align-items: center;
+		gap: 80px;
+	}
+	.text {
+		max-width: 588px;
+	}
+	.label {
+		display: block;
+		width: 350px;
+		height: 40px;
+		border-radius: 20px;
+		@include skeleton();
+		margin-bottom: 32px;
+	}
+	.title {
+		display: block;
+		width: 558px;
+		margin-bottom: 24px;
+		&Bar {
+			height: 68px;
+			border-radius: 4px;
+			margin-bottom: 8px;
+			@include skeleton();
+			&:first-child {
+				width: 500px;
+			}
+			&:last-child {
+				width: 400px;
+				margin-bottom: 0;
+			}
+		}
+	}
+	.desc {
+		display: block;
+		width: 100%;
+		height: 32px;
+		border-radius: 4px;
+		margin-bottom: 32px;
+		@include skeleton();
+	}
+	.button {
+		display: block;
+		width: 200px;
+		height: 60px;
+		border-radius: 30px;
+		@include skeleton();
+	}
+	.img {
+		width: 600px;
+		height: 520px;
+		border-radius: 4px;
+		@include skeleton();
+	}
+}
+
+// erorr
+.error {
+	@include height-banner();
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	.code {
+		color: color(accent);
+		text-shadow: rgba(color(accent), 0.3) 5px 1px,
+			rgba(color(accent), 0.2) 12px 3px, rgba(color(accent), 0.3) 6px 4px;
+		font-size: 98px;
+		font-weight: 700;
+		line-height: 150px;
+	}
 }

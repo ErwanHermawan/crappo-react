@@ -37,16 +37,54 @@ const HeroBanner = (props) => {
 	};
 
 	let classNameSingle = style.banner;
-	if (props.list.length === 1) {
-		if (showSingle) {
-			classNameSingle += " banner-single";
+
+	// data is loading
+	if (!props.ready) {
+		return (
+			<div className={style.placeholder}>
+				<div className="container">
+					<div className={style.inner}>
+						<div className={style.text}>
+							<div className={style.label}></div>
+							<div className={style.title}>
+								<div className={style.titleBar}></div>
+								<div className={style.titleBar}></div>
+								<div className={style.titleBar}></div>
+							</div>
+							<div className={style.desc}></div>
+							<div className={style.button}></div>
+						</div>
+						<div className={style.img}></div>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	// data is error
+	if (props.error) {
+		return (
+			<div className={style.error}>
+				<div className="container">
+					<h4 className={style.code}>{props.error.status}</h4>
+					<h4 className={style.message}>{props.error.message}</h4>
+				</div>
+			</div>
+		);
+	}
+
+	if (props.ready && props.error !== null) {
+		if (props.data.length === 1) {
+			if (showSingle) {
+				classNameSingle += " banner-single";
+			}
 		}
 	}
 
 	return (
 		<div className={classNameSingle}>
-			{props.list.length === 1 ? (
-				props.list.map((val, idx) => {
+			{props.data.length === 1 ? (
+				props.data.map((val, idx) => {
 					return (
 						<div className={style.item} key={`hb-${idx}`}>
 							<div className={style.middleAlign}>
@@ -60,7 +98,7 @@ const HeroBanner = (props) => {
 			) : (
 				<Slider {...settings}>
 					{showSingle &&
-						props.list.map((val, idx) => {
+						props.data.map((val, idx) => {
 							return (
 								<div className={style.item} key={`hb-${idx}`}>
 									<div className={style.middleAlign}>

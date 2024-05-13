@@ -13,8 +13,8 @@ import ProfitInvestmentWidget from "infrastucture/widgets/ProfitInvestmentWidget
 // -- components
 import Calculate from "presentation/component/organisms/Calculate";
 import StartMining from "presentation/component/organisms/StartMining";
-
 // -- datas
+
 import calculateData from "./calculateData";
 import startMiningData from "./startMiningData";
 

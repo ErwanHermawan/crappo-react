@@ -5,6 +5,7 @@ import style from "./style.module.scss";
 import Button from "presentation/component/atoms/Button";
 
 const HeroBannerItem = (props) => {
+	// const { image, label, title, description, button } = props;
 	return (
 		<div className={style.banner}>
 			<div className={style.img}>
