@@ -15,8 +15,8 @@ import Calculate from "presentation/component/organisms/Calculate";
 import StartMining from "presentation/component/organisms/StartMining";
 // -- datas
 
-import calculateData from "./calculateData";
-import startMiningData from "./startMiningData";
+import calculateData from "./dummyData/calculateData";
+import startMiningData from "./dummyData/startMiningData";
 
 const Home = (props) => {
 	return (

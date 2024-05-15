@@ -73,6 +73,7 @@ const HeroBanner = (props) => {
 		);
 	}
 
+	// set single banner
 	if (props.ready && props.error !== null) {
 		if (props.data.length === 1) {
 			if (showSingle) {

@@ -12,28 +12,15 @@ import style from "./style.module.scss";
 // -- atoms
 import Button from "presentation/component/atoms/Button";
 
-const Header = ({ activeMenu }) => {
-	// state
-	const [data, setData] = useState({
-		brand: [],
-		main_menu: [],
-		auth_menu: [],
-	});
+const Header = (props) => {
+	const { data } = props;
 
-	// call API
-	const { data: getData } = httpRequest({
-		url: ENDPOINT.HEADER,
-		method: "get",
-	});
-
-	// use effect
-	useEffect(() => {
-		if (getData?.data) {
-			setData(getData?.data);
-		}
-	}, [getData]);
-
-	const { brand, main_menu, auth_menu } = data;
+	// data is loading
+	if (!props.ready) {
+		<div className="container">
+			<h5>data sedang dimuat</h5>
+		</div>;
+	}
 
 	// Sticky Menu Area
 	const ref = useRef(null);
@@ -79,7 +66,7 @@ const Header = ({ activeMenu }) => {
 				}
 			}
 		}
-
+      
 		_lastScrollTop = _scrollTop;
 	};
 
@@ -89,10 +76,10 @@ const Header = ({ activeMenu }) => {
 				<div className={style.inner} ref={ref}>
 					{/* Logo */}
 					<div className={style.logo}>
-						<Link to={brand?.to} className={style.logoLink}>
+						<Link to={data?.brand?.to} className={style.logoLink}>
 							<img
-								src={brand?.logo}
-								alt={brand?.name}
+								src={data?.brand?.logo}
+								alt={data?.brand?.name}
 								className={style.logoImg}
 							/>
 						</Link>
@@ -101,12 +88,12 @@ const Header = ({ activeMenu }) => {
 					<div className={style.nav}>
 						<div className={style.menu}>
 							<ul className={style.list}>
-								{main_menu.map((val, idx) => (
+								{data?.main_menu?.map((val, idx) => (
 									<li className={style.item} key={`hm-${idx}`}>
 										<Link
 											to={val.to}
 											className={
-												activeMenu === val.active
+												props.activeMenu === val.active
 													? `${style.link} ${style.active}`
 													: style.link
 											}
@@ -118,7 +105,7 @@ const Header = ({ activeMenu }) => {
 							</ul>
 						</div>
 						<div className={style.btn}>
-							{auth_menu.map((vB, iB) => (
+							{data?.auth_menu?.map((vB, iB) => (
 								<Button key={`hm-${iB}`} to={vB.to} text={vB.text} />
 							))}
 						</div>

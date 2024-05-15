@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 // -- components
-import Header from "presentation/component/organisms/Header";
+import HeaderWidget from "infrastucture/widgets/HeaderWidget";
 import Footer from "presentation/component/organisms/Footer";
 
 const Default = (props) => {
@@ -16,7 +16,7 @@ const Default = (props) => {
 
 	return (
 		<>
-			<Header activeMenu={activeMenu} />
+			<HeaderWidget activeMenu={activeMenu} />
 			<main className="main">{children}</main>
 			<Footer />
 		</>

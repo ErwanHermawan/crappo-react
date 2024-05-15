@@ -140,9 +140,9 @@
 		width: 558px;
 		margin-bottom: 24px;
 		&Bar {
-			height: 68px;
+			height: 58px;
 			border-radius: 4px;
-			margin-bottom: 8px;
+			margin-bottom: 16px;
 			@include skeleton();
 			&:first-child {
 				width: 500px;
@@ -170,7 +170,7 @@
 	}
 	.img {
 		width: 600px;
-		height: 520px;
+		height: 580px;
 		border-radius: 4px;
 		@include skeleton();
 	}

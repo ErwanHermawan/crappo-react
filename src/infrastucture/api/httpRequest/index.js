@@ -26,7 +26,6 @@ const RequestComponent = (param) => {
 			.then((response) => {
 				setData(response.data);
 				setReady(true);
-				console.log(response.data);
 			})
 			.catch((error) => {
 				if (error.response !== undefined) {
