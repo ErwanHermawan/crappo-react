@@ -5,6 +5,50 @@ import style from "./style.module.scss";
 import NumbersItem from "presentation/component/molecules/NumbersItem";
 
 const Numbers = (props) => {
+	if (!props.ready) {
+		return (
+			<div className={style.placeholder}>
+				<div className="container">
+					<div className={style.inner}>
+						<div className={style.item}>
+							<div className={style.icon}></div>
+							<div className={style.text}>
+								<div className={style.title}></div>
+								<div className={style.desc}></div>
+							</div>
+						</div>
+						<div className={style.item}>
+							<div className={style.icon}></div>
+							<div className={style.text}>
+								<div className={style.title}></div>
+								<div className={style.desc}></div>
+							</div>
+						</div>
+						<div className={style.item}>
+							<div className={style.icon}></div>
+							<div className={style.text}>
+								<div className={style.title}></div>
+								<div className={style.desc}></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	// data is error
+	if (props.error) {
+		return (
+			<div className={style.error}>
+				<div className="container">
+					<h4 className={style.code}>{props.error.status}</h4>
+					<h4 className={style.message}>{props.error.message}</h4>
+				</div>
+			</div>
+		);
+	}
+
 	return (
 		<div className={style.numbers}>
 			<div className="container">

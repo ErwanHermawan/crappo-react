@@ -1,5 +1,4 @@
-// -- core
-
+// -- model
 import cryptoCurrenciesModel from "core/models/cryptoCurrencies";
 
 // -- organisms

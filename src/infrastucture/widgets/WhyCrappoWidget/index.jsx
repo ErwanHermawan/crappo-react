@@ -1,31 +1,13 @@
-// -- core
-import { useEffect, useState } from "react";
-
-// -- api
-import httpRequest from "infrastucture/api/httpRequest";
-import ENDPOINT from "infrastucture/api/endPoint";
+// -- model
+import whyCrappoModel from "core/models/whyCrappo";
 
 // -- organisms
 import WhyCrappo from "presentation/component/organisms/WhyCrappo";
 
 const WhyCrappoWidget = () => {
-	// state
-	const [data, setData] = useState([]);
+	const { ready, data, error } = whyCrappoModel.list();
 
-	// call API
-	const { data: getData } = httpRequest({
-		url: ENDPOINT.WHY_CRAPPO,
-		method: "get",
-	});
-
-	// use effect
-	useEffect(() => {
-		if (getData?.data) {
-			setData(getData?.data);
-		}
-	}, [getData]);
-
-	return <WhyCrappo data={data} />;
+	return <WhyCrappo ready={ready} data={data?.data} error={error} />;
 };
 
 export default WhyCrappoWidget;

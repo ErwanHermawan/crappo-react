@@ -2,10 +2,6 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// -- api
-import httpRequest from "infrastucture/api/httpRequest";
-import ENDPOINT from "infrastucture/api/endPoint";
-
 // -- style
 import style from "./style.module.scss";
 
@@ -66,7 +62,7 @@ const Header = (props) => {
 				}
 			}
 		}
-      
+
 		_lastScrollTop = _scrollTop;
 	};
 

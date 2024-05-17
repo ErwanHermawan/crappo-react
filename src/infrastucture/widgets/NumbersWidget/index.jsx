@@ -1,31 +1,13 @@
-// -- core
-import { useEffect, useState } from "react";
-
-// -- api
-import httpRequest from "infrastucture/api/httpRequest";
-import ENDPOINT from "infrastucture/api/endPoint";
+// -- model
+import numbersModel from "core/models/numbers";
 
 // -- organisms
 import Numbers from "presentation/component/organisms/Numbers";
 
-const NumbersWidget = () => {
-	// state
-	const [data, setData] = useState([]);
+const numbersWidget = () => {
+	const { ready, data, error } = numbersModel.list();
 
-	// call API
-	const { data: getData } = httpRequest({
-		url: ENDPOINT.NUMBERS,
-		method: "get",
-	});
-
-	// use effect
-	useEffect(() => {
-		if (getData?.data?.length) {
-			setData(getData?.data);
-		}
-	}, [getData]);
-
-	return <Numbers data={data} />;
+	return <Numbers ready={ready} data={data?.data} error={error} />;
 };
 
-export default NumbersWidget;
+export default numbersWidget;

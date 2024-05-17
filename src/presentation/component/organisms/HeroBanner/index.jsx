@@ -36,7 +36,7 @@ const HeroBanner = (props) => {
 		slidesToScroll: 1,
 	};
 
-	let classNameSingle = style.banner;
+	let className = style.banner;
 
 	// data is loading
 	if (!props.ready) {
@@ -77,13 +77,13 @@ const HeroBanner = (props) => {
 	if (props.ready && props.error !== null) {
 		if (props.data.length === 1) {
 			if (showSingle) {
-				classNameSingle += " banner-single";
+				className += " banner-single";
 			}
 		}
 	}
 
 	return (
-		<div className={classNameSingle}>
+		<div className={className}>
 			{props.data.length === 1 ? (
 				props.data.map((val, idx) => {
 					return (
