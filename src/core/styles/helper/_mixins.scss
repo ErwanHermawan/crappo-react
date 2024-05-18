@@ -129,7 +129,7 @@
 /* placeholder */
 @mixin skeleton {
 	background-color: rgba(color(white), 0.1);
-	animation: shine 2s linear infinite alternate;
+	animation: shine 1s linear infinite alternate;
 
 	@keyframes shine {
 		0% {

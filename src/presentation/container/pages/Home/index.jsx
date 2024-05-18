@@ -9,14 +9,10 @@ import CryptocurrenciesWidget from "infrastucture/widgets/CryptocurrenciesWidget
 import InvestSmartWidget from "infrastucture/widgets/InvestSmartWidget";
 import StatisticsWidget from "infrastucture/widgets/StatisticsWidget";
 import ProfitInvestmentWidget from "infrastucture/widgets/ProfitInvestmentWidget";
+import CalculateWidget from "infrastucture/widgets/CalculateWidget";
 
 // -- components
-import Calculate from "presentation/component/organisms/Calculate";
 import StartMining from "presentation/component/organisms/StartMining";
-// -- datas
-
-import calculateData from "./dummyData/calculateData";
-import startMiningData from "./dummyData/startMiningData";
 
 const Home = (props) => {
 	return (
@@ -25,12 +21,12 @@ const Home = (props) => {
 				<HeroBannerWidget />
 				<NumbersWidget />
 				<WhyCrappoWidget />
-				<Calculate {...calculateData} />
+				<CalculateWidget />
 				<CryptocurrenciesWidget />
 				<InvestSmartWidget />
 				<StatisticsWidget />
 				<ProfitInvestmentWidget />
-				<StartMining {...startMiningData} />
+				<StartMining />
 			</Default>
 		</>
 	);
