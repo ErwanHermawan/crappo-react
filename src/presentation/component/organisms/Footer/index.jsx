@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 import httpRequest from "infrastucture/api/httpRequest";
 import ENDPOINT from "infrastucture/api/endPoint";
 
-// -- dummy data
-import footerData from "./footerData";
+// -- states
+import useStateSubscribe from "core/states/subscribe";
 
 // -- style
 import style from "./style.module.scss";
 
 const Footer = () => {
 	// state
+	const { total } = useStateSubscribe();
+
 	const [data, setData] = useState({
 		brand: [],
 		menu: [],
@@ -25,7 +27,7 @@ const Footer = () => {
 	});
 
 	// call API
-	const { data: getData } = httpRequest({
+	const { data: getData } = httpRequest.firstLoad({
 		url: ENDPOINT.FOOTER,
 		method: "get",
 	});
@@ -52,6 +54,7 @@ const Footer = () => {
 								className={style.logoImg}
 							/>
 						</Link>
+						<h3>{total}</h3>
 					</div>
 					{/* Menu */}
 					<div className={style.menu}>

@@ -4,47 +4,67 @@ import { useState, useEffect } from "react";
 // --- library
 import axios from "axios";
 
-// --- RequestComponent
-const RequestComponent = (param) => {
-	const [ready, setReady] = useState(false);
-	const [data, setData] = useState(null);
-	const [error, setError] = useState(null);
+// --- httpRequest
+const httpRequest = async (param) => {
+	let config = { ...param };
 
-	useEffect(() => {
-		let config = { ...param };
+	if (param.token) {
+		config = {
+			...param,
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("token"),
+			},
+		};
+	}
 
-		if (param.token) {
-			config = {
-				...param,
-				headers: {
-					Authorization: "Bearer " + localStorage.getItem("token"),
-				},
-			};
-		}
-
-		axios(config)
-			.then((response) => {
-				setData(response.data);
-				setReady(true);
-			})
-			.catch((error) => {
-				if (error.response !== undefined) {
-					console.log(error.message);
-					setError({
+	return await axios(config)
+		.then((response) => {
+			return { data: response.data, error: false };
+		})
+		.catch((error) => {
+			if (error.response !== undefined) {
+				return {
+					data: null,
+					error: {
 						status: error.response.status,
 						type: error.name,
 						message: error.message,
-					});
-				} else {
-					setError({
+					},
+				};
+			} else {
+				return {
+					data: null,
+					error: {
 						status: 410,
 						type: "Gone",
 						message:
 							"The requested resource is no longer available at the server.",
-					});
-				}
-				setReady(true);
-			});
+					},
+				};
+			}
+		});
+};
+
+// --- RequestComponent
+const RequestComponent = (param) => {
+	const [ready, setReady] = useState(false);
+	const [data, setData] = useState(null);
+	const [error, setError] = useState(false);
+
+	const handleFetch = async () => {
+		const { data: dataResponse, error: errorResponse } = await httpRequest(
+			param
+		);
+		if (errorResponse) {
+			setError(errorResponse);
+		} else {
+			setData(dataResponse);
+		}
+		setReady(true);
+	};
+
+	useEffect(() => {
+		handleFetch();
 	}, []);
 
 	return {
@@ -54,8 +74,7 @@ const RequestComponent = (param) => {
 	};
 };
 
-// --- httpRequest
-const httpRequest = (param) => {
+httpRequest.firstLoad = (param) => {
 	return RequestComponent(param);
 };
 

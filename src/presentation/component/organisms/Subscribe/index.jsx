@@ -1,9 +1,6 @@
 // -- core
 import { useState } from "react";
 
-// -- endpoint
-import ENDPOINT from "infrastucture/api/endPoint";
-
 // -- style
 import style from "./style.module.scss";
 
@@ -11,30 +8,16 @@ import style from "./style.module.scss";
 import Button from "presentation/component/atoms/Button";
 import FormControl from "presentation/component/atoms/FormControl";
 
-const StartMining = (props) => {
+const Subscribe = (props) => {
 	const [email, setEmail] = useState("");
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		try {
-			let res = await fetch(ENDPOINT.SUBSCRIBE, {
-				method: "post",
-				body: JSON.stringify({
-					email: email,
-				}),
-			});
-			let resJson = await res.json();
-			if (res.status === 200) {
-				setEmail("");
-				alert(resJson.message);
-			} else {
-				alert(resJson.message);
-			}
-		} catch (err) {
-			console.log(err);
-		}
+	const handleChange = (e) => {
+		setEmail(e.target.value);
 	};
+
+	const handleSubmit = () => {
+		props.onSubmit(email);
+	};
+
 	return (
 		<div className={style.start}>
 			<div className="container">
@@ -45,13 +28,7 @@ const StartMining = (props) => {
 							Join now with CRAPPO to get the latest news and start mining now
 						</p>
 					</div>
-					<form
-						className={style.form}
-						action="#"
-						method="POST"
-						autoComplete="off"
-						onSubmit={handleSubmit}
-					>
+					<form className={style.form} autoComplete="off">
 						<div className={style.row}>
 							<FormControl
 								color="white"
@@ -60,12 +37,16 @@ const StartMining = (props) => {
 								id="email"
 								placeholder="Enter your email"
 								required="required"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
+								onChange={handleChange}
 							/>
 						</div>
 						<div className={style.row}>
-							<Button type="submit" text="Subscribe" variant="white" />
+							<Button
+								type="button"
+								text="Subscribe"
+								variant="white"
+								onClick={handleSubmit}
+							/>
 						</div>
 					</form>
 				</div>
@@ -74,4 +55,4 @@ const StartMining = (props) => {
 	);
 };
 
-export default StartMining;
+export default Subscribe;

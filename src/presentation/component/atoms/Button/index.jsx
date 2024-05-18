@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import style from "./style.module.scss";
 
 const Button = (props) => {
-	const { to, text, type, icon, variant = "primary" } = props;
+	const { to, text, type, icon, variant = "primary", ...otherProps } = props;
 
 	let variantStyle = style.btn;
 	if (variant === "rounded") {
@@ -21,13 +21,13 @@ const Button = (props) => {
 	return (
 		<>
 			{to && (
-				<Link to={to} className={variantStyle}>
+				<Link {...otherProps} to={to} className={variantStyle}>
 					{text}
 					{icon && <i className={`ci-${icon}`}></i>}
 				</Link>
 			)}
 			{!to && (
-				<button type={type} className={variantStyle}>
+				<button {...otherProps} type={type} className={variantStyle}>
 					{text}
 					{icon && <i className={`ci-${icon}`}></i>}
 				</button>

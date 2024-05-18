@@ -11,7 +11,10 @@ const CryptoItem = (props) => {
 				<img src={props.icon} alt={props.name} />
 			</div>
 			<div className={style.text}>
-				<h3 className={style.title}>{props.name}</h3>
+				<h3 className={style.title}>
+					{props.name}
+					<span className={style.code}>{props.code}</span>
+				</h3>
 				<p className={style.desc}>{props.description}</p>
 				<div className={style.btn}>
 					<Button

@@ -2,7 +2,7 @@ import httpRequest from "infrastucture/api/httpRequest";
 import ENDPOINT from "infrastucture/api/endPoint";
 
 const handleList = () => {
-	const { ready, data, error } = httpRequest({
+	const { ready, data, error } = httpRequest.firstLoad({
 		method: "get",
 		url: ENDPOINT.NUMBERS,
 	});

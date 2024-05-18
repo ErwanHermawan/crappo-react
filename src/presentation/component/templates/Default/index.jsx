@@ -7,7 +7,6 @@ import HeaderWidget from "infrastucture/widgets/HeaderWidget";
 import Footer from "presentation/component/organisms/Footer";
 
 const Default = (props) => {
-	const { children, activeMenu } = props;
 	const { pathname } = useLocation();
 
 	useEffect(() => {
@@ -16,8 +15,8 @@ const Default = (props) => {
 
 	return (
 		<>
-			<HeaderWidget activeMenu={activeMenu} />
-			<main className="main">{children}</main>
+			<HeaderWidget activeMenu={props.activeMenu} />
+			<main className="main">{props.children}</main>
 			<Footer />
 		</>
 	);

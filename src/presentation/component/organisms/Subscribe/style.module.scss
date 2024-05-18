@@ -159,3 +159,33 @@
 		border-color: color(white);
 	}
 }
+
+.msg-success {
+	position: fixed;
+	bottom: 32px;
+	left: 50%;
+	display: inline-block;
+	padding: 24px;
+	color: color(white);
+	border-radius: 32px;
+	// opacity: 0;
+	// visibility: hidden;
+	transform: translate(-50%, 100%);
+	transition: all 0.5s ease;
+	background-color: green;
+}
+
+.msg-error {
+	position: fixed;
+	bottom: 32px;
+	left: 50%;
+	display: inline-block;
+	padding: 24px;
+	color: color(white);
+	border-radius: 32px;
+	// opacity: 0;
+	// visibility: hidden;
+	transform: translate(-50%, 100%);
+	transition: all 0.5s ease;
+	background-color: red;
+}

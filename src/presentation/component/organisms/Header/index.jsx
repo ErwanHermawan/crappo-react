@@ -2,6 +2,9 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// -- states
+import useStateSubscribe from "core/states/subscribe";
+
 // -- style
 import style from "./style.module.scss";
 
@@ -9,7 +12,8 @@ import style from "./style.module.scss";
 import Button from "presentation/component/atoms/Button";
 
 const Header = (props) => {
-	const { data } = props;
+	const { data, activeMenu } = props;
+	const { total } = useStateSubscribe();
 
 	// data is loading
 	if (!props.ready) {
@@ -89,7 +93,7 @@ const Header = (props) => {
 										<Link
 											to={val.to}
 											className={
-												props.activeMenu === val.active
+												activeMenu === val.text.toLowerCase()
 													? `${style.link} ${style.active}`
 													: style.link
 											}
@@ -104,6 +108,7 @@ const Header = (props) => {
 							{data?.auth_menu?.map((vB, iB) => (
 								<Button key={`hm-${iB}`} to={vB.to} text={vB.text} />
 							))}
+							<Button text={total} />
 						</div>
 					</div>
 				</div>

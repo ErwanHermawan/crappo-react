@@ -4,7 +4,7 @@ import ENDPOINT from "infrastucture/api/endPoint";
 const handleList = () => {
 	const { ready, data, error } = httpRequest.firstLoad({
 		method: "get",
-		url: ENDPOINT.HEADER,
+		url: ENDPOINT.FOOTER,
 	});
 
 	return {
@@ -14,8 +14,8 @@ const handleList = () => {
 	};
 };
 
-const headerModel = {
+const footerModel = {
 	list: handleList,
 };
 
-export default headerModel;
+export default footerModel;
