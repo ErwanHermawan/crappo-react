@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 // -- states
 import useStateSubscribe from "core/states/subscribe";
+import useStateHeader from "core/states/header";
 
 // -- style
 import style from "./style.module.scss";
@@ -12,8 +13,9 @@ import style from "./style.module.scss";
 import Button from "presentation/component/atoms/Button";
 
 const Header = (props) => {
-	const { data, activeMenu } = props;
+	const { data } = props;
 	const { total } = useStateSubscribe();
+	const { menu } = useStateHeader();
 
 	// data is loading
 	if (!props.ready) {
@@ -93,7 +95,7 @@ const Header = (props) => {
 										<Link
 											to={val.to}
 											className={
-												activeMenu === val.text.toLowerCase()
+												menu === val.text.toLowerCase()
 													? `${style.link} ${style.active}`
 													: style.link
 											}

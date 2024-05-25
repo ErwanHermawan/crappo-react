@@ -1,5 +1,11 @@
+// -- core
+import { useState } from "react";
+
 // -- templates
 import Default from "presentation/component/templates/Default";
+
+// -- states
+import useStateHeader from "core/states/header";
 
 // -- widgets
 import HeroBannerWidget from "infrastucture/widgets/HeroBannerWidget";
@@ -16,6 +22,12 @@ import SubsribeWidget from "infrastucture/widgets/SubscribeWidget";
 // import StartMining from "presentation/component/organisms/StartMining";
 
 const Home = (props) => {
+	const { setMenu } = useStateHeader();
+
+	useState(() => {
+		setMenu("");
+	}, []);
+
 	return (
 		<>
 			<Default activeMenu="yhome">
