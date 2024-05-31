@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // -- templates
-import Default from "presentation/component/templates/Default";
+import Default from "presentation/container/templates/Default";
 
 // -- states
 import useStateHeader from "core/states/header";
